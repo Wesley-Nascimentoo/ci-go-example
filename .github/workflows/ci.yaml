@@ -1,5 +1,8 @@
 name: ci-galang-workflow # nome do workflow
-on: [push] # evento que dispara o workflow
+on: 
+  pull_request:
+    branches:
+      - develop  # evento que dispara o workflow, neste caso, pull request para a branch develop
 jobs:
     check-application:
         runs-on: ubuntu-latest # ambiente onde o job será executado
