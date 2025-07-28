@@ -25,4 +25,4 @@ jobs:
         uses: docker/build-push-action@v6 # constrói e envia a imagem Docker
         with:
           push: false # envia a imagem para o registro
-          tags: Wesley-Nascimentoo/ci-go-example:latest # tag da imagem
+          tags: Wesley-Nascimentoo/ci-go-example:latest # tag da imagem Docker
