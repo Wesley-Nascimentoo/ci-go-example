@@ -1,15 +1,19 @@
 name: ci-galang-workflow # nome do workflow
-on: 
+on:
   pull_request:
     branches:
-      - develop  # evento que dispara o workflow, neste caso, pull request para a branch develop
+      - develop # evento que dispara o workflow, neste caso, pull request para a branch develop
+  # matriz de versões do Go a serem testadas
 jobs:
-    check-application:
-        runs-on: ubuntu-latest # ambiente onde o job será executado
-        steps:
-            - uses: actions/checkout@v3 # faz o checkout do código
-            - uses: actions/setup-go@v4 # configura o ambiente Go
-              with:
-                go-version: 1.20 # versão do Go a ser usada
-            - run: go test
-            - run: go run math.go # executa o arquivo math.go
+  check-application:
+    runs-on: ubuntu-latest # ambiente onde o job será executado
+    strategy:
+      matrix:
+        go: [1.19, 1.20] # versões do Go a serem testadas
+    steps:
+      - uses: actions/checkout@v3 # faz o checkout do código
+      - uses: actions/setup-go@v4 # configura o ambiente Go
+        with:
+          go-version: ${{ matrix.go }} # versão do Go a ser usada
+      - run: go test
+      - run: go run math.go # executa o arquivo math.go
