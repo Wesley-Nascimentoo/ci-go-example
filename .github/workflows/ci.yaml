@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest # ambiente onde o job será executado
     strategy:
       matrix:
-        go: [1.19, 1.20] # versões do Go a serem testadas
+        go: [1.14, 1.20] # versões do Go a serem testadas
     steps:
       - uses: actions/checkout@v3 # faz o checkout do código
       - uses: actions/setup-go@v4 # configura o ambiente Go
