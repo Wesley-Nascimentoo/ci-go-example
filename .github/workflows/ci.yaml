@@ -17,3 +17,12 @@ jobs:
           go-version: ${{ matrix.go }} # versão do Go a ser usada
       - run: go test
       - run: go run math.go # executa o arquivo math.go
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3 # configura o QEMU para emulação de arquiteturas
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3 # configura o Docker Buildx
+      - name: Build and push
+        uses: docker/build-push-action@v6 # constrói e envia a imagem Docker
+        with:
+          push: false # envia a imagem para o registro
+          tags: Wesley-Nascimentoo/ci-go-example:latest # tag da imagem
